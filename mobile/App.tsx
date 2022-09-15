@@ -10,7 +10,7 @@ import {
 
 import { StatusBar } from 'react-native';
 
-import { Home } from './src/screens/Home/index'
+import { Routes } from './src/routes/index'
 import { Loading } from './src/components/Loading';
 
 export default function App() {
@@ -29,7 +29,7 @@ export default function App() {
         backgroundColor="transparent"
         translucent
       />
-    {fontsLoaded ? <Home /> : <Loading /> }
+    {fontsLoaded ? <Routes /> : <Loading /> }
     </Background>
   );
 }
