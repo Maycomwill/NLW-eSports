@@ -4,8 +4,8 @@ import { Game } from '../../App'
 import * as Dialog from '@radix-ui/react-dialog'
 import * as Checkbox from '@radix-ui/react-checkbox'
 import * as ToggleGroup from '@radix-ui/react-toggle-group';
-// import * as Select from '@radix-ui/react-Select'
-// import SelectOptions from '../SelectOptions/SelectOptions'
+import * as Select from '@radix-ui/react-Select'
+import SelectOptions from '../SelectOptions/SelectOptions'
 import { Check, GameController } from 'phosphor-react'
 import Input from '../Form/Input'
 
@@ -14,6 +14,7 @@ function CreateAdModal() {
 
   const [games, setGames] = useState<Game[]>([])
   const [weekDays, setWeekDays] = useState<string[]>([])
+  const [gameId, setGameId] = useState('')
   const [useVoiceChannel, setUseVoiceChannel] = useState(false)
 
   useEffect(() => {
@@ -38,7 +39,7 @@ function CreateAdModal() {
      };
 
     try {
-      await axios.post(`http://localhost:3333/games/${data.game}/ads`, {
+      await axios.post(`http://localhost:3333/games/${gameId}/ads`, {
         "name": data.nickname,
         "yearsPlaying": Number(data.yearsPlaying,),
         "discord": data.discord,
@@ -60,30 +61,16 @@ function CreateAdModal() {
         <Dialog.Content className='fixed bg-[#2A2634] py-8 px-10 text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg w-[500px] shadow-lg shadow-black/25'>
           <Dialog.Title className='text-3xl font-black'>Publique um anúncio</Dialog.Title>
           <form onSubmit={handleCreateAd} className='mt-8 flex flex-col gap-4'>
-            <div className='flex flex-col gap-2'>
-              <label htmlFor="game" className="font-semibold">Qual o game?</label>
-
-              <select
-                name="game"
-                defaultValue=""
-                id="game"
-                className='bg-zinc-900 py-3 px-4 rounded text-small placeholder:text-zinc-500'
+            <div className='flex flex-col gap-2'>             
+              <Select.Root
+              onValueChange={setGameId}
               >
-
-                <option disabled value="">Selecione o game que deseja jogar</option>
-                {games.map(game => {
-                  return <option key={game.id} value={game.id}>{game.title}</option>
-                })}
-              </select>
-
-              {/* Select do radix ainda não funcional
-                   <Select.Root>
-                    <Select.Trigger className='bg-zinc-900 py-3 px-4 flex justify-between rounded text-small text-zinc-500'>
-                      <Select.Value placeholder="Selecione o jogo"/>
-                      <Select.Icon className='text-white'/>
-                    </Select.Trigger>
-                    <SelectOptions />
-                  </Select.Root> */}
+                <Select.Trigger className='bg-zinc-900 py-3 px-4 flex justify-between rounded text-small text-zinc-500'>
+                  <Select.Value placeholder="Selecione o jogo"/>
+                  <Select.Icon className='text-white'/>
+                </Select.Trigger>
+                <SelectOptions />
+              </Select.Root>
             </div>
 
             <div className='flex flex-col gap-2'>

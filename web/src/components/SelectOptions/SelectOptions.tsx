@@ -20,22 +20,24 @@ function SelectOptions() {
     <Select.Portal>
       <Select.Content>
         <Select.ScrollUpButton />
-        <Select.Viewport className='top-[70%] right-[5.9rem] rounded bg-zinc-900 text-zinc-300 inline-flex justify-start w-[135%]'>
+        <Select.Viewport 
+          className='mt-8 px-4 py-2 rounded bg-zinc-900 text-white flex flex-col justify-start w-95%'
+        >
           <Select.Item value='Games'>
             <Select.ItemText />
             <Select.ItemIndicator />
           </Select.Item>
 
-          <Select.Group className='w-100'>
+          <Select.Group className='w-100 flex flex-col justify-between rounded '>
             {games.map(games => {
                 return(
                     <Select.Item 
-                        className='w-100 hover:bg-zinc-500 w-100'
+                        className='hover:bg-zinc-500 text-white flex justify-between items-center'
                         key={games.id}
-                        value={games.title}
+                        value={games.id}
                     >
                         <Select.ItemText>{games.title}</Select.ItemText>
-                        <Select.ItemIndicator>
+                        <Select.ItemIndicator className='pr-4'>
                             <Check className='w-6 h-6 text-white' />
                         </Select.ItemIndicator>
                     </Select.Item>
