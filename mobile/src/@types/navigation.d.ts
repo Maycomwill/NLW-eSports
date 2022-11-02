@@ -4,8 +4,6 @@ export interface GameParams {
     bannerURL: string;
 }
 
-
-
 export declare global {
     namespace ReactNavigation {
         interface RootParamList {

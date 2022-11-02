@@ -39,14 +39,14 @@ function App() {
       <div className='grid grid-cols-6 gap-6 mt-16'>
         {games.map(game => {
           return(
-            <GameBanner 
-              key={game.id}
-              title={game.title} 
-              bannerURL={game.bannerURL} 
-              adsCount={game._count.ads}
-            />
-          )
-        })}        
+              <GameBanner 
+                key={game.id}
+                title={game.title} 
+                bannerURL={game.bannerURL} 
+                adsCount={game._count.ads}
+              />
+            )
+          })}        
       </div>
       <Dialog.Root>
         <CreateAdBanner />
